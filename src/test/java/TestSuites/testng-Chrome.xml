@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="WordPress Automation Chrome Tests" parallel="false" verbose="2" preserve-order="true">
+
+
+  <listeners>
+		<listener class-name="ExtentReportListener.ExtentReporterNG" />
+	</listeners>
+
+<test name="ChromeTest" preserve-order="true" >
+<parameter name="browserType" value="Chrome"/>
+
+  
+    <classes>
+
+           <class name="TestCases.LoginPageTest"/>
+
+
+           <class name="TestCases.HomePageTest"/>
+
+
+    </classes>
+  </test> <!-- Test -->
+  
+
+  
+  
+  
+</suite> <!-- Suite -->

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="WordPress Automation FF Tests" parallel="none" verbose="2" preserve-order="true">
+
+  <listeners>
+		<listener class-name="ExtentReportListener.ExtentReporterNG" />
+	</listeners>
+
+  <test name="Test" preserve-order="true" parallel="none">
+  <parameter name="browserType" value="Firefox"/>
+  
+    <classes>
+    
+      <class name="TestCases.LoginPageTest"/>
+        <class name="TestCases.HomePageTest"/>
+      
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
