@@ -79,6 +79,42 @@ public class HomePageTest extends TestBase {
         Assert.assertTrue(homepage.verifyPagesTab());
     }
 
+    @Test(priority = 11)
+    public void CommentsTabTest() throws Exception{
+        Assert.assertTrue(homepage.verifyCommentsTab());
+    }
+
+
+    @Test(priority = 12)
+    public void AppearanceTabTest() throws Exception{
+        Assert.assertTrue(homepage.verifyAppearanceTab());
+    }
+
+    @Test(priority = 13)
+    public void PluginsTabTest() throws Exception{
+        Assert.assertTrue(homepage.verifyPluginsTab());
+    }
+
+
+    @Test(priority = 14)
+    public void UsersTabTest() throws Exception{
+        Assert.assertTrue(homepage.verifyUsersTab());
+    }
+
+
+    @Test(priority = 15)
+    public void ToolsTabTest() throws Exception{
+        Assert.assertTrue(homepage.verifyToolsTab());
+    }
+
+
+    @Test(priority = 16)
+    public void SettingsTabTest() throws Exception{
+        Assert.assertTrue(homepage.verifySettingsTab());
+    }
+
+
+
 
 
 }

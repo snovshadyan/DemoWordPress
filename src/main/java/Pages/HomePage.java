@@ -35,7 +35,23 @@ public class HomePage extends TestBase {
     @FindBy(xpath = "//div[@class='wp-menu-name' and contains(text(),'Pages')]")
     WebElement PagesTab;
 
+    @FindBy(xpath = "//*[@id=\"menu-comments\"]/a/div[3]")
+    WebElement CommentsTab;
 
+    @FindBy(xpath = "//*[@id=\"menu-appearance\"]/a/div[3]")
+    WebElement AppearanceTab;
+
+    @FindBy(xpath="//*[@id=\"menu-plugins\"]/a/div[3]")
+    WebElement PluginsTab;
+
+    @FindBy(xpath = "//*[@id=\"menu-users\"]/a/div[3]")
+    WebElement UsersTab;
+
+    @FindBy(xpath="//*[@id=\"menu-tools\"]/a/div[3]")
+    WebElement ToolsTab;
+
+    @FindBy(xpath="//*[@id=\"menu-settings\"]/a/div[3]")
+    WebElement SettingsTab;
 
 
 
@@ -94,8 +110,37 @@ public class HomePage extends TestBase {
     }
 
 
+    public boolean verifyCommentsTab() throws Exception{
+        HEY(CommentsTab);
+        return CommentsTab.isDisplayed();
+    }
+
+    public boolean verifyAppearanceTab() throws Exception{
+        HEY(AppearanceTab);
+        return AppearanceTab.isDisplayed();
+    }
 
 
+    public boolean verifyPluginsTab() throws Exception{
+        HEY(PluginsTab);
+        return PluginsTab.isDisplayed();
+    }
+
+
+    public boolean verifyUsersTab() throws Exception{
+        HEY(UsersTab);
+        return UsersTab.isDisplayed();
+    }
+
+    public boolean verifyToolsTab() throws Exception{
+        HEY(ToolsTab);
+        return ToolsTab.isDisplayed();
+    }
+
+    public boolean verifySettingsTab() throws Exception{
+        HEY(SettingsTab);
+        return SettingsTab.isDisplayed();
+    }
 
 
 }
