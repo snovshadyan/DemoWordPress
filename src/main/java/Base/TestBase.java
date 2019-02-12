@@ -73,7 +73,7 @@ public class TestBase {
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
         driver.get(baseURL);
-        Thread.sleep(3000);
+        Thread.sleep(1000);
 
     }
 

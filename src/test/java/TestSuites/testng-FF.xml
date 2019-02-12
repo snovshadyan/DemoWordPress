@@ -10,10 +10,12 @@
   <parameter name="browserType" value="Firefox"/>
   
     <classes>
-    
-      <class name="TestCases.LoginPageTest"/>
+
+        <class name="TestCases.LoginPageTest"/>
         <class name="TestCases.HomePageTest"/>
-      
+        <class name="TestCases.PostsPageTest"/>
+
+
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
