@@ -148,6 +148,20 @@ public class TestBase {
 
     }
 
+
+    public  void WFENV(By by) throws Exception {
+
+        sleep(100);
+        HEY(driver.findElement(by));
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
+
+    }
+
+
+
+
     public  void WFEC(By by) throws Exception {
 
         sleep(100);

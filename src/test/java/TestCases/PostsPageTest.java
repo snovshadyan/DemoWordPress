@@ -102,8 +102,22 @@ public class PostsPageTest extends TestBase {
     }
 
     @Test(priority = 14)
-    public void NewPostTest() throws Exception{
-        Assert.assertTrue(postspage.verifyNewPost());
+    public void AddNewPostTest() throws Exception{
+        Assert.assertTrue(postspage.AddNewPost());
     }
+
+
+    @Test(priority = 15)
+    public void NewPostSelectionTest() throws Exception{
+        Assert.assertTrue(postspage.NewPostSelection());
+    }
+
+
+    @Test(priority = 16)
+    public void DeleteNewPost() throws Exception{
+
+        Assert.assertTrue(postspage.DeleteNewPost());
+    }
+
 
 }

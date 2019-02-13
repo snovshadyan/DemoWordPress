@@ -11,8 +11,8 @@
   
     <classes>
 
-<!--        <class name="TestCases.LoginPageTest"/>
-        <class name="TestCases.HomePageTest"/>-->
+        <class name="TestCases.LoginPageTest"/>
+        <class name="TestCases.HomePageTest"/>
         <class name="TestCases.PostsPageTest"/>
 
 

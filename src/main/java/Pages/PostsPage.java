@@ -3,10 +3,12 @@ package Pages;
 import Base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import java.awt.*;
 
@@ -30,7 +32,7 @@ public class PostsPage extends TestBase {
     @FindBy(xpath="//*[@id=\"menu-posts\"]/ul/li[5]/a")
     WebElement TagsTab;
 
-    @FindBy(xpath="//*[@id=\"wpbody-content\"]/div[4]/a")
+    @FindBy(xpath="//*[@class='page-title-action' and text()='Add New']")
     WebElement AddNewBtn;
 
     @FindBy(xpath="//*[@id=\"post-search-input\"]")
@@ -54,18 +56,27 @@ public class PostsPage extends TestBase {
     @FindBy(xpath="//*[@id=\"post-query-submit\"]")
     WebElement FilterBtn;
 
-    @FindBy(xpath="//*[@id=\"title-prompt-text\"]")
+    @FindBy(xpath="//*[text()='Enter title here']")
     WebElement NewPostTitle;
 
     @FindBy(xpath="//*[@id=\"content\"]")
     WebElement NewPostContent;
 
-    @FindBy(xpath="//*[@id=\"publish\"]")
-    WebElement PublisgBtn;
+    @FindBy(xpath="//*[@id='publish' and @value='Publish']")
+    WebElement PublisgBtn1;
+
+    @FindBy(xpath="//*[text()='Publish']")
+    WebElement PublisgBtn2;
+
 
     @FindBy(xpath="//*[contains(text(),'TestTitle')]")
     WebElement NewPostField;
 
+    @FindBy(xpath = "//*[text()='TestTitle']/parent::div/parent::td/parent::tr/th/input")
+    WebElement NewPostCheckBox;
+
+    @FindBy(xpath="//*[@id='bulk-action-selector-top']")
+    WebElement bulk_action_selector_top;
 
 
     public PostsPage(){
@@ -147,25 +158,57 @@ public class PostsPage extends TestBase {
 
 
 
-    public boolean verifyNewPost() throws Exception{
+    public boolean AddNewPost() throws Exception{
 
+        HEY(AddNewBtn);
         AddNewBtn.click();
-        WFEC(By.xpath("//*[@id=\"title-prompt-text\"]"));
-        NewPostTitle.click();
+        WFEC(By.xpath("//*[text()='Enter title here']"));
 
-
+        HEY(NewPostTitle);
         Actions performAct = new Actions(driver);
         performAct.sendKeys(NewPostTitle, "TestTitle").build().perform();
 
 
-        NewPostContent.sendKeys("Test Content");
-        PublisgBtn.click();
-        sleep(2000);
+        HEY(PublisgBtn1);
+        PublisgBtn1.click();
+        sleep(5000);
+        HEY(AllPostsTab);
         AllPostsTab.click();
         WFEV(By.xpath("//*[contains(text(),'TestTitle')]"));
+        HEY(NewPostField);
         return NewPostField.isDisplayed();
     }
 
+
+    public boolean NewPostSelection() throws Exception{
+
+        HEY(NewPostCheckBox);
+        NewPostCheckBox.click();
+        return NewPostCheckBox.isSelected();
+
+
+    }
+
+    public boolean DeleteNewPost() throws Exception{
+
+        HEY(bulk_action_selector_top);
+        Select dropdown= new Select(bulk_action_selector_top);
+        dropdown.selectByVisibleText("Move to Bin");
+
+        HEY(ApplyBtn);
+        ApplyBtn.click();
+
+        sleep(1000);
+
+
+        try {
+            driver.findElement(By.xpath("//*[contains(text(),'TestTitle')]"));
+            return false;
+
+        } catch (NoSuchElementException e) {
+            return true;
+        }
+    }
 
 
 }
