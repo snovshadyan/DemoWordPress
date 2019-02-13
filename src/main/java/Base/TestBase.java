@@ -148,7 +148,15 @@ public class TestBase {
 
     }
 
+    public  void WFEC(By by) throws Exception {
 
+        sleep(100);
+        HEY(driver.findElement(by));
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(by));
+
+    }
 
 
 

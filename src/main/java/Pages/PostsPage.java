@@ -2,9 +2,15 @@ package Pages;
 
 import Base.TestBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.awt.*;
+
+import static org.apache.poi.hssf.usermodel.HSSFShapeTypes.TextBox;
 
 public class PostsPage extends TestBase {
 
@@ -24,6 +30,15 @@ public class PostsPage extends TestBase {
     @FindBy(xpath="//*[@id=\"menu-posts\"]/ul/li[5]/a")
     WebElement TagsTab;
 
+    @FindBy(xpath="//*[@id=\"wpbody-content\"]/div[4]/a")
+    WebElement AddNewBtn;
+
+    @FindBy(xpath="//*[@id=\"post-search-input\"]")
+    WebElement SearchField;
+
+    @FindBy(xpath="//*[@id=\"search-submit\"]")
+    WebElement SearchBtn;
+
     @FindBy(xpath="//*[@id=\"bulk-action-selector-top\"]")
     WebElement BulkActionsBtn;
 
@@ -38,6 +53,20 @@ public class PostsPage extends TestBase {
 
     @FindBy(xpath="//*[@id=\"post-query-submit\"]")
     WebElement FilterBtn;
+
+    @FindBy(xpath="//*[@id=\"title-prompt-text\"]")
+    WebElement NewPostTitle;
+
+    @FindBy(xpath="//*[@id=\"content\"]")
+    WebElement NewPostContent;
+
+    @FindBy(xpath="//*[@id=\"publish\"]")
+    WebElement PublisgBtn;
+
+    @FindBy(xpath="//*[contains(text(),'TestTitle')]")
+    WebElement NewPostField;
+
+
 
     public PostsPage(){
         PageFactory.initElements(driver, this);
@@ -69,6 +98,21 @@ public class PostsPage extends TestBase {
     public boolean verifyTagsTab() throws Exception{
         HEY(TagsTab);
         return TagsTab.isDisplayed();
+    }
+
+    public boolean verifyAddNewBtn() throws Exception{
+        HEY(AddNewBtn);
+        return AddNewBtn.isDisplayed();
+    }
+
+    public boolean verifySearchField() throws Exception{
+        HEY(SearchField);
+        return SearchField.isDisplayed();
+    }
+
+    public boolean verifySearchBtn() throws Exception{
+        HEY(SearchBtn);
+        return SearchBtn.isDisplayed();
     }
 
 
@@ -103,7 +147,24 @@ public class PostsPage extends TestBase {
 
 
 
+    public boolean verifyNewPost() throws Exception{
 
+        AddNewBtn.click();
+        WFEC(By.xpath("//*[@id=\"title-prompt-text\"]"));
+        NewPostTitle.click();
+
+
+        Actions performAct = new Actions(driver);
+        performAct.sendKeys(NewPostTitle, "TestTitle").build().perform();
+
+
+        NewPostContent.sendKeys("Test Content");
+        PublisgBtn.click();
+        sleep(2000);
+        AllPostsTab.click();
+        WFEV(By.xpath("//*[contains(text(),'TestTitle')]"));
+        return NewPostField.isDisplayed();
+    }
 
 
 
