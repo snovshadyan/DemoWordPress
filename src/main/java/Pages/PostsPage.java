@@ -95,8 +95,23 @@ public class PostsPage extends TestBase {
     @FindBy(xpath="//*[@id=\"doaction\"]")
     WebElement CategoryApplyBtn;
 
+    @FindBy(xpath="//*[@id=\"tag-name\"]")
+    WebElement AddNewTagField;
 
+    @FindBy(xpath="//*[@id=\"submit\"]")
+    WebElement AddNewTagBtn;
 
+    @FindBy(xpath = "//a[text()='Test Tag']")
+    WebElement NewTagField;
+
+    @FindBy(xpath = "//a[text()='Test Tag']/parent::strong/parent::td/preceding-sibling::th/input")
+    WebElement NewTagCHeckBox;
+
+    @FindBy(xpath="//*[@id=\"bulk-action-selector-top\"]")
+    WebElement TagBulkAction;
+
+    @FindBy(xpath="//*[@id=\"doaction\"]")
+    WebElement TagApplyBtn;
 
 
 
@@ -279,6 +294,50 @@ public class PostsPage extends TestBase {
         } catch (NoSuchElementException e) {
             return true;
         }
+
+    }
+
+
+    public boolean verifyNewTagField() throws Exception{
+        HEY(TagsTab);
+        TagsTab.click();
+        WFEV(By.xpath("//*[@id=\"tag-name\"]"));
+        HEY(AddNewTagField);
+        return AddNewTagField.isDisplayed();
+
+    }
+
+
+    public boolean AddNewTag() throws Exception{
+
+        AddNewTagField.sendKeys("Test Tag");
+        HEY(AddNewTagBtn);
+        AddNewTagBtn.click();
+        WFEV(By.xpath("//a[text()='Test Tag']"));
+        HEY(NewTagField);
+        return NewTagField.isDisplayed();
+    }
+
+
+    public boolean DeleteNewTag() throws Exception{
+
+        HEY(NewTagCHeckBox);
+        NewTagCHeckBox.click();
+
+        HEY(TagBulkAction);
+        Select dropdown= new Select(TagBulkAction);
+        dropdown.selectByVisibleText("Delete");
+        HEY(TagApplyBtn);
+        TagApplyBtn.click();
+
+        try {
+            driver.findElement(By.xpath("//a[text()='Test Tag']"));
+            return false;
+
+        } catch (NoSuchElementException e) {
+            return true;
+        }
+
 
     }
 

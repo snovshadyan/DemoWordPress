@@ -147,10 +147,24 @@ public class PostsPageTest extends TestBase {
     }
 
 
+    @Test(priority = 21)
+    public void NewTagFieldTest() throws Exception{
+
+        Assert.assertTrue(postspage.verifyNewTagField());
+    }
 
 
+    @Test(priority = 22 )
+    public void AddNewTagTest() throws Exception{
+        Assert.assertTrue(postspage.AddNewTag());
+    }
 
 
+    @Test(priority = 23)
+    public void DeleteNewTagTest() throws Exception{
+
+        Assert.assertTrue(postspage.DeleteNewTag());
+    }
 
 
 
