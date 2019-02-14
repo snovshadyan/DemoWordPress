@@ -23,6 +23,16 @@ public class LoginPage extends TestBase {
     @FindBy(xpath = "//input[@name='rememberme']")
     WebElement RememberMe;
 
+    @FindBy(xpath="//*[text()=': Invalid username. ']")
+    WebElement InvalidUsernameMsg;
+
+    @FindBy(xpath="//*[text()=': The password you entered for the username ']")
+    WebElement InvalidPasswordMsg;
+
+    @FindBy(xpath = "//*[@id=\"menu-dashboard\"]/a/div[3]")
+    WebElement DashboardTab;
+
+
     public LoginPage(){
         PageFactory.initElements(driver, this);
     }
@@ -59,12 +69,43 @@ public class LoginPage extends TestBase {
     }
 
 
-    public HomePage DoLogin(String un, String pwd) throws Exception{
+    public boolean InvalidUsername(String un, String pwd) throws Exception{
 
+        HEY(Username);
+        Username.sendKeys(un);
+        HEY(Password);
+        Password.sendKeys(pwd);
+        HEY(LoginBtn);
+        LoginBtn.click();
+        WFEV(By.xpath("//*[text()=': Invalid username. ']"));
+        HEY(InvalidUsernameMsg);
+        return InvalidUsernameMsg.isDisplayed();
+
+    }
+
+
+    public boolean InvalidPassword(String un, String pwd) throws Exception {
+
+        HEY(Username);
+        Username.sendKeys(un);
+        HEY(Password);
+        Password.sendKeys(pwd);
+        HEY(LoginBtn);
+        LoginBtn.click();
+        WFEV(By.xpath("//*[text()=': The password you entered for the username ']"));
+        HEY(InvalidPasswordMsg);
+        return InvalidPasswordMsg.isDisplayed();
+
+    }
+
+    public boolean DoLogin(String un, String pwd) throws Exception{
+
+        driver.get(driver.getCurrentUrl());
+        sleep(2000);
         Username.sendKeys(un);
         Password.sendKeys(pwd);
         LoginBtn.click();
-        return new HomePage();
+        return DashboardTab.isDisplayed();
     }
 
 

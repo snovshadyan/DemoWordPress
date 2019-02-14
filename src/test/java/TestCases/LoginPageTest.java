@@ -62,11 +62,23 @@ public class LoginPageTest extends TestBase {
     }
 
 
+    @Test(priority = 6)
+    public void InvalidUsernameTest() throws Exception{
 
-    @Test(priority=6)
+        Assert.assertTrue(loginpage.InvalidUsername("invalidusername", prop.getProperty("password")));
+    }
+
+
+    @Test(priority = 7)
+    public void InvalidPasswordTest() throws Exception{
+        Assert.assertTrue(loginpage.InvalidPassword(prop.getProperty("username"), "Invalidpassword"));
+    }
+
+
+
+    @Test(priority=8)
     public void LoginTest() throws Exception{
-        loginpage.DoLogin(prop.getProperty("username"), prop.getProperty("password"));
-
+        Assert.assertTrue(loginpage.DoLogin(prop.getProperty("username"), prop.getProperty("password")));
     }
 
 
