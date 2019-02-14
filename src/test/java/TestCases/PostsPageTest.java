@@ -119,5 +119,65 @@ public class PostsPageTest extends TestBase {
         Assert.assertTrue(postspage.DeleteNewPost());
     }
 
+    @Test(priority = 17)
+    public void CategoriesHeaderTest() throws Exception{
+
+        Assert.assertTrue(postspage.verifyCategoriesHeader());
+    }
+
+
+    @Test(priority = 18)
+    public void CategoryNameFieldTest() throws Exception{
+
+        Assert.assertTrue(postspage.verifyCategoryNameField());
+    }
+
+
+    @Test(priority = 19)
+    public void AddNewCategoryTest() throws Exception{
+
+        Assert.assertTrue(postspage.AddNewCategory());
+    }
+
+
+    @Test(priority = 20)
+    public void DeleteNewCategoryTest() throws Exception{
+
+        Assert.assertTrue(postspage.DeleteNewCategory());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

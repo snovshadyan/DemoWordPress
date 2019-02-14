@@ -65,10 +65,6 @@ public class PostsPage extends TestBase {
     @FindBy(xpath="//*[@id='publish' and @value='Publish']")
     WebElement PublisgBtn1;
 
-    @FindBy(xpath="//*[text()='Publish']")
-    WebElement PublisgBtn2;
-
-
     @FindBy(xpath="//*[contains(text(),'TestTitle')]")
     WebElement NewPostField;
 
@@ -77,6 +73,32 @@ public class PostsPage extends TestBase {
 
     @FindBy(xpath="//*[@id='bulk-action-selector-top']")
     WebElement bulk_action_selector_top;
+
+    @FindBy(xpath="//*[@id=\"col-left\"]/div/div/h2")
+    WebElement AddNewCategoryHeader;
+
+    @FindBy(xpath="//*[@id=\"tag-name\"]")
+    WebElement CategoryNameField;
+
+    @FindBy(xpath="//*[@id=\"submit\"]")
+    WebElement AddNewCategoryBtn;
+
+    @FindBy(xpath="//*[@class='row-title' and text()='Test Category']")
+    WebElement TestCategoryTitle;
+
+    @FindBy(xpath="//*[@class='row-title' and text()='Test Category']/parent::strong/parent::td/parent::tr/th/input")
+    WebElement NewCategoryCheckBox;
+
+    @FindBy(xpath="//*[@id=\"bulk-action-selector-top\"]")
+    WebElement CategoryBulkAction;
+
+    @FindBy(xpath="//*[@id=\"doaction\"]")
+    WebElement CategoryApplyBtn;
+
+
+
+
+
 
 
     public PostsPage(){
@@ -209,6 +231,58 @@ public class PostsPage extends TestBase {
             return true;
         }
     }
+
+
+    public boolean verifyCategoriesHeader() throws Exception{
+
+        HEY(CategoriesTab);
+        CategoriesTab.click();
+        HEY(AddNewCategoryHeader);
+        return AddNewCategoryHeader.isDisplayed();
+
+    }
+
+
+    public boolean verifyCategoryNameField() throws Exception{
+
+        HEY(CategoryNameField);
+        return CategoryNameField.isDisplayed();
+    }
+
+
+    public boolean AddNewCategory() throws Exception{
+
+        CategoryNameField.sendKeys("Test Category");
+        HEY(AddNewCategoryBtn);
+        AddNewCategoryBtn.click();
+        HEY(TestCategoryTitle);
+        return TestCategoryTitle.isDisplayed();
+    }
+
+
+    public boolean DeleteNewCategory() throws Exception{
+
+        HEY(NewCategoryCheckBox);
+        NewCategoryCheckBox.click();
+
+        HEY(CategoryBulkAction);
+        Select dropdown= new Select(CategoryBulkAction);
+        dropdown.selectByVisibleText("Delete");
+        HEY(CategoryApplyBtn);
+        CategoryApplyBtn.click();
+        sleep(1000);
+
+        try {
+            driver.findElement(By.xpath("//*[@class='row-title' and text()='Test Category']"));
+            return false;
+
+        } catch (NoSuchElementException e) {
+            return true;
+        }
+
+    }
+
+
 
 
 }
